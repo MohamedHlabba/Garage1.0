@@ -35,7 +35,7 @@ namespace Garage1._0
         public void Adcd<T>(T item ,string name)
         {
 
-          //  string someString = name;
+          // // string someString = name;
             //string newString = string.Concat(
             //    someString.ToLower().AsEnumerable().Select((c, i) => i % 2 == 0 ? c : char.ToUpper(c)));
             //TODO
