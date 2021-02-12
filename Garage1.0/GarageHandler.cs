@@ -38,6 +38,7 @@ namespace Garage1._0
           //  string someString = name;
             //string newString = string.Concat(
             //    someString.ToLower().AsEnumerable().Select((c, i) => i % 2 == 0 ? c : char.ToUpper(c)));
+            //TODO
 
             bool has = garage.Any(cus => cus.RegisterNummer.ToLower().Equals(name) || cus.RegisterNummer.ToUpper().Equals(name));
           //  bool has = garage.Any(cus => cus.RegisterNummer.Equals(name.AsEnumerable().SequenceEqual)) || cus.RegisterNummer.ToUpper().Equals(someString));
