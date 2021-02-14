@@ -11,5 +11,7 @@ namespace Garage1._0
 
         public void FindByType(string reg);
         public void SearchFordon();
+      
+
     }
 }

@@ -83,10 +83,10 @@ namespace Garage1._0
         {
             return arr.Where((e, i) => i != index).ToArray();
         }
-        //static private bool DoesExist<T>(this T [] arr,T item)
-        //{
-        //    return arr.DoesExist(x => item.Equals(x. name, StringComparison.OrdinalIgnoreCase));
-        //}
+
+
+
+       
 
     }
     public static class IEnumerableExt

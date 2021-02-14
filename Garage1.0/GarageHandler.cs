@@ -36,6 +36,11 @@ namespace Garage1._0
         {
 
           
+            if (garage.IsFull ==true)
+            {
+                ui.Print(" Sorry, Garage is full ");
+                return;
+            }
             //TODO
           
             bool has = garage.Any(ve=>ve.RegisterNummer.EqualsInsensitive(name));
@@ -49,11 +54,6 @@ namespace Garage1._0
                      return;
                     
                 }
-            if (garage.IsFull ==true)
-            {
-                ui.Print(" Sorry, Garage is full ");
-                return;
-            }
                 
                 garage.Add(item as Vehicule);
 
@@ -84,7 +84,11 @@ namespace Garage1._0
             
         }
 
+
+     
+
     }
+
     
 }
 

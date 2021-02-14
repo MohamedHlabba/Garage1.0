@@ -21,6 +21,12 @@ namespace Garage1._0
         public void AddVehicuke()
         {
 
+            if (handler.garage.IsFull == true)
+            {
+                ui.Print(" Sorry, Garage is full ");
+                return;
+            }
+
             ui.Print("Choose for the list below to Add a new vehicule");
             ui.Print("Welcome to the Garage\n(1, 2, 3 ,4, 0) "
                     + "\n1. Add Car"
@@ -186,33 +192,72 @@ namespace Garage1._0
             public void ByType()
             {
 
+            var ofTypeCar = handler.garage.OfType<Car>();
+            
+                ui.Print($".{ofTypeCar.Count()} {"Car"} (s)");
+            
+            var ofTypeBus= handler.garage.OfType<Bus>();
+          
+            
+                ui.Print($".{ofTypeBus.Count()} {"Bus"} (s)");
+            
+            var ofTypeM = handler.garage.OfType<MotorCycle>();
+            
+                ui.Print($".{ofTypeM.Count()} {"MotorCycle"} (s)");
 
-            var results = from p in handler.garage
-                          group p by p.GetType().Name into g
-                          select new { handler.garage };
+            
+            var ofTypeAirp= handler.garage.OfType<Airplane>();
+           
+                ui.Print($".{ofTypeAirp.Count()} {"Airplane"} (s)");
 
-            foreach (var item in results )
-            {
-                ui.Print(item.GetType().Name) ;
-           }
+            
+            var ofTypeB = handler.garage.OfType<Boat>();
+            
+                ui.Print($".{ofTypeB.Count()} {"Boat"} (s)");
 
-
-
-                // var checkReg = Extensions.AskForString("Register number", ui);
-                // var query = from Vehicule vehicule in handler.garage
-                //             where vehicule.RegisterNummer==checkReg
-                //             select vehicule;
-                //// handler.Remove(query);
-
-                // //foreach ( s in query)
-                // //    Console.WriteLine(s.LastName + ": " + s.Scores[0]);
-                // ui.Print("Enter vehicule's registernummer to remove it from the list");
+            
 
 
-                // var resultat = handler.garage.ToList().Where( val=> val.RegisterNummer.ToLower()!=checkReg).ToArray();
-                // // resultat.ToList().IndexOf(handler.garage.Where(val => val.RegisterNummer.ToLower() != checkReg));
-                //// int x = Extensions.FindIndex(handler.garage, handler.garage.ToList().Where(val => val.RegisterNummer.ToLower() != checkReg).ToArray());
-                // 
+           
+            // var cartype = handler.garage
+            //.Where(item =>item.GetType().Name=="Car")
+            //.Select(item => item.Stats());
+            // .GroupBy(u => u.GetType())
+
+
+            //  handler.garage.Where(v => v.RegisterNummer.EqualsInsensitive(regs)).
+            //ToList().
+            // ForEach(v => ui.Print(v.Stats()));
+
+
+
+
+            //var results = from Vehicule in handler.garage
+            //              group Vehicule by Vehicule.GetType().Name into g
+            //              select new { handler.garage };
+
+            //foreach (var item in groupedCustomerList)
+            //{
+            //    ui.Print(item.;
+            //}
+
+
+
+            // var checkReg = Extensions.AskForString("Register number", ui);
+            // var query = from Vehicule vehicule in handler.garage
+            //             where vehicule.RegisterNummer==checkReg
+            //             select vehicule;
+            //// handler.Remove(query);
+
+            // //foreach ( s in query)
+            // //    Console.WriteLine(s.LastName + ": " + s.Scores[0]);
+            // ui.Print("Enter vehicule's registernummer to remove it from the list");
+
+
+            // var resultat = handler.garage.ToList().Where( val=> val.RegisterNummer.ToLower()!=checkReg).ToArray();
+            // // resultat.ToList().IndexOf(handler.garage.Where(val => val.RegisterNummer.ToLower() != checkReg));
+            //// int x = Extensions.FindIndex(handler.garage, handler.garage.ToList().Where(val => val.RegisterNummer.ToLower() != checkReg).ToArray());
+            // 
 
 
 
