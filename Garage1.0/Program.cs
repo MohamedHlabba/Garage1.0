@@ -33,11 +33,11 @@ namespace Garage1._0
                                 + "\n2. Lista fordonstyper och hur många av varje som står i garaget"
                                 + "\n3. Lägga till och ta bort fordon ur garaget"
                                 + "\n4. Hitta ett specifikt fordon via registreringsnumret."
-                                + "\n5.Söka efter fordon utifrån en  egenskap eller flera  "
+                                + "\n5. Söka efter fordon utifrån en  egenskap eller flera  "
                                 + "\n0. Exit the application");
         }
 
-        private static void UserAction()
+        private static void UserAction()    
         {
             char input = ' ';
             try
@@ -56,7 +56,7 @@ namespace Garage1._0
                     break;
                 case '2':
                     //TODO
-                    // manager. 
+                    manager.ByType();
                     break;
                 case '3':
                     manager.AddVehicuke();

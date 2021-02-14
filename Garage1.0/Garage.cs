@@ -13,22 +13,22 @@ namespace Garage1._0
         private T[] vehicules;
         public int Capacity { get; set; }
         //private int _size { get; set; }
-        //public int Count => vehicules.Length;
-        private int count;
-        static bool check = false;
+       // public int Count => vehicules.Length ;
+       
 
        ConsoleUI ui = new ConsoleUI();
 
 
         public bool IsFull => Capacity <= CountVehicule();
+       // public bool IsFull => Capacity < Count;
 
-     //public Vehicule this [int index] =>vehicules [index];
+        //public Vehicule this [int index] =>vehicules [index];
 
 
         public Garage()
         {
-            vehicules = new T[3];
-            //Capacity=2;
+            Capacity=1;
+            vehicules = new T[Capacity];
 
         }
 
@@ -41,18 +41,7 @@ namespace Garage1._0
 
 
 
-        //public void GetIndex(int i)
-        //{
 
-        //    //Extensions.FindIndex(vehicules,);
-        //}
-
-        //public int T GetIndex(Vehic)
-        //{
-
-        //    return Array.FindIndex(vehicules, val => val.Equals(v));
-
-        //}
 
 
 
@@ -73,45 +62,7 @@ namespace Garage1._0
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
-        //public bool Remove(T item)
-        //{
 
-        //}
-        //public bool Add(T item)
-        //{
-        //    bool test = false;
-        //    for (int i = 0; i < vehicules.Length; i++)
-        //    {
-        //        if (vehicules[i] == null)
-        //        {
-        //            vehicules[i] =item;
-                    
-        //        }
-                
-        //        test =true;
-        //        {
-                    
-        //        }
-
-        //    }
-            
-        //        foreach (T newitem in vehicules)
-        //     {
-
-        //        if (newitem.Equals(item.RegisterNummer) == true && vehicules.Contains(item))
-
-        //        {
-        //            test = false;
-
-        //        }
-        //        test = true;
-        //     }
-
-                
-                    
-
-        //    return test;
-        //}
 
 
         public bool Add(T item)
@@ -124,7 +75,14 @@ namespace Garage1._0
             
                 for (int i = 0; i < vehicules.Length; i++)
                 {
-                    if (vehicules[i] == null)
+
+                if (IsFull)
+                {
+                    return IsFull;
+                }
+                
+                
+                if (vehicules[i] == null)
                     {
                         vehicules[i] = item;
                         return true;
@@ -134,67 +92,14 @@ namespace Garage1._0
                 return false;
             
 
-
-
-            //    if (IsFull)
-
-            //    {
-
-            //        return false;
-            //        ui.Print("Garage is full");
-
-
-            //    }
-            //    var temp=  vehicules.ToList();
-            //    temp.Add(item);
-            //    vehicules.ToArray();
-
-            //     return true;
-            //Array.Resize(ref myArray, myArray.Length + 1);
-            //myArray[myArray.GetUpperBound(0)] = newValue;
-
-            //for (int i = 0; i < vehicules.Length; i++)
-            //{
-            //   if (vehicules[i] == null)
-            //    {
-            //        vehicules[i] = item;
-
-            //        check= true;
-            //        ui.Print("Succed ");
-                 
-            //    }
-                
-            //    {
-
-            //        if (vehicules[i].RegisterNummer.Equals(item.RegisterNummer))
-
-            //            check = false;
-            //     ui.Print("Vehicule exists already ");
-
-            //    }
-
-            //}
-            //return check;
-
-
         }
 
-        //list.Add(item);
-            //return true;
-        // if (IsFull || item is null) return false;
-        //  public void Remove()
-        //  {
-        //      int keyIndex = vehicules
-
-        //.Select((v, i) => new { Vehicule= v, Index = i })
-        //.FirstOrDefault(x => x.Vehicule.Id)?.Index ?? -1;
-
-        //  }
+ 
 
 
         public int CountVehicule()
         {
-            count = 0;
+            int count = 0;
             for (int i = 0; i < vehicules.Length; i++)
             {
                 if (vehicules[i]!=null)
@@ -207,14 +112,33 @@ namespace Garage1._0
             return count;
         }
 
+        public int CountRemove()
+        {
+            int countarray= 0;
+            for (int i = 0; i < vehicules.Length; i++)
+            {
+                if (vehicules[i] != null)
+                {
+                    countarray++;
+
+                }
 
 
+            }
 
 
+            return countarray;
+        }
+
+
+        //TODO(Add test when array is empty, try vehicules .count)
 
         public T Remove(int i)
         {
-            
+
+
+           
+
 
                 var tmp = new T[vehicules.Length];
 
@@ -225,7 +149,7 @@ namespace Garage1._0
 
                 var result = vehicules[i];
 
-                for (var j = i + 1; j < CountVehicule() - 1; ++j)
+                for (var j = i + 1; j < vehicules.Length - 1; ++j)
                 {
                     tmp[j] = vehicules[j];
                 }

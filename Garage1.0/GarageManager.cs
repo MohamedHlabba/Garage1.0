@@ -83,7 +83,7 @@ namespace Garage1._0
             int wheels4 = Extensions.AskForInt("Wheels", ui);
             int numberofseat4 = Extensions.AskForInt("Number of engine ", ui);
             var boat = new Boat(regs4, brand4, color4, wheels4, numberofseat4);
-            handler.Add(boat);
+            handler.Add(boat,regs4);
             
         }
         private void AddMotocycle()
@@ -95,7 +95,7 @@ namespace Garage1._0
             int cylinder = Extensions.AskForInt("Cylinder Volume", ui);
             var motor = new MotorCycle(regs3, brand3, color3, wheels3, cylinder);
            
-            handler.Add(motor);
+            handler.Add(motor,regs3);
           
         }
 
@@ -108,7 +108,7 @@ namespace Garage1._0
             int numberofseat2= Extensions.AskForInt("Number Of seat", ui);
             int length2 = Extensions.AskForInt("Length", ui);
             var bus = new Bus(regs2, brand2, color2, wheels2, numberofseat2, length2);
-           handler.Add(bus);
+           handler.Add(bus,regs2);
            
 
         }
@@ -122,101 +122,98 @@ namespace Garage1._0
          int numberofseat = Extensions.AskForInt("Number Of seat", ui);
             int length    = Extensions.AskForInt("Length", ui);
             var airplane = new Airplane(regst1, brand1, color1, wheels1, numberofseat, length);
-           handler.Add(airplane);
+           handler.Add(airplane,regst1);
            
         }
 
 
 
-        private void AddCar4()
-        {
-            string brand = Extensions.AskForString("Brand", ui);
-            string regst = Extensions.AskForString("Registernummer", ui);
-
-            string color = Extensions.AskForString("Color", ui);
-            int wheels = Extensions.AskForInt("Wheels", ui);
-            string fueltype = Extensions.AskForString("FuelType", ui);
-            var car = new Car(regst, brand, color, wheels, fueltype);
-            handler.Add(car);
-
-        }
-
+      
         private void AddCar()
         {
             string brand = Extensions.AskForString("Brand", ui);
             string regst = Extensions.AskForString("Registernummer", ui);
-
-
-
             string color = Extensions.AskForString("Color", ui);
             int wheels = Extensions.AskForInt("Wheels", ui);
             string fueltype = Extensions.AskForString("FuelType", ui);
             var car = new Car(regst, brand, color, wheels, fueltype);
-            handler.Adcd(car, regst);
+            handler.Add(car, regst);
 
         }
 
         public void GettAllVehicules()
         {
             foreach (Vehicule vehicule in handler.GetAll<Vehicule>())
-            { 
+            {
+               
+                
                 ui.Print($"{vehicule.Stats()}");
             }
         }
 
         public void RemoveVehiculeeeeee()
         {
-           
-            var checkReg = Extensions.AskForString("Register number", ui);
+
+
+            var result = handler.garage.ToArray();
+
+            if (result.Length == 0)
+            {
+                ui.Print("Garage is emty");
+                return;
+            }
+
+                var checkReg = Extensions.AskForString("Register number", ui);
 
             var query = from Vehicule vehicule in handler.garage
-                        where vehicule.RegisterNummer == checkReg
+                        where vehicule.RegisterNummer.EqualsInsensitive(checkReg)
                         select vehicule ;
+           //TODO eck if you can use the extension to chech if array is null 
+            //query = handler.garage.Select(s => s.).ToArrayOrNull();
+           
+                
             foreach (var item in query)
             {
                 
-            int index = Extensions.FindIndex(handler.garage.ToArray(), item);
-               handler.Remove(index);  
-            }
-           
-               ui.Print("Vehicule has been removed");
+            int index = Extensions.FindIndex(handler.garage.ToArray(),item);
 
-           
-          
+               handler.Remove(index);  
+
+            }      
+               ui.Print("Vehicule has been removed");
         }
 
-            public void RemoveVehicule()
-        {
-
-            var checkReg = Extensions.AskForString("Register number", ui);
-            var query = from Vehicule vehicule in handler.garage
-                        where vehicule.RegisterNummer==checkReg
-                        select vehicule;
-           // handler.Remove(query);
-
-            //foreach ( s in query)
-            //    Console.WriteLine(s.LastName + ": " + s.Scores[0]);
-            ui.Print("Enter vehicule's registernummer to remove it from the list");
-            
-
-            var resultat = handler.garage.ToList().Where( val=> val.RegisterNummer.ToLower()!=checkReg).ToArray();
-            // resultat.ToList().IndexOf(handler.garage.Where(val => val.RegisterNummer.ToLower() != checkReg));
-           // int x = Extensions.FindIndex(handler.garage, handler.garage.ToList().Where(val => val.RegisterNummer.ToLower() != checkReg).ToArray());
-            foreach (var item in resultat)
+            public void ByType()
             {
-                ui.Print(item.Stats());
-            }
-            //handler.garage.
 
-            // handler.garage = handler.garage.Where(e => e.CompareTo(reg) != 0).ToArray();
-            //string[] arrayOfItems = new string[5] { "Apple", "Banana", "Orange", "Apple", "Grape" };
 
-            //var arrayWithoutApples = arrayOfItems.Where(x => x != "Apple").ToArray();
+            var results = from p in handler.garage
+                          group p by p.GetType().Name into g
+                          select new { handler.garage };
 
-            //foreach (var item in arrayWithoutApples)
-            //{
-            //    Console.WriteLine(item);
-            //}
+            foreach (var item in results )
+            {
+                ui.Print(item.GetType().Name) ;
+           }
+
+
+
+                // var checkReg = Extensions.AskForString("Register number", ui);
+                // var query = from Vehicule vehicule in handler.garage
+                //             where vehicule.RegisterNummer==checkReg
+                //             select vehicule;
+                //// handler.Remove(query);
+
+                // //foreach ( s in query)
+                // //    Console.WriteLine(s.LastName + ": " + s.Scores[0]);
+                // ui.Print("Enter vehicule's registernummer to remove it from the list");
+
+
+                // var resultat = handler.garage.ToList().Where( val=> val.RegisterNummer.ToLower()!=checkReg).ToArray();
+                // // resultat.ToList().IndexOf(handler.garage.Where(val => val.RegisterNummer.ToLower() != checkReg));
+                //// int x = Extensions.FindIndex(handler.garage, handler.garage.ToList().Where(val => val.RegisterNummer.ToLower() != checkReg).ToArray());
+                // 
+
 
 
 
@@ -225,7 +222,7 @@ namespace Garage1._0
         public void GetVehiculeByRegNumber()
         {
             var regs = Extensions.AskForString("Enter the registernumber  ",ui);
-            handler.garage.Where(v => v.RegisterNummer.ToLower() == regs).  
+            handler.garage.Where(v => v.RegisterNummer.EqualsInsensitive(regs)).  
             ToList().
              ForEach(v => ui.Print(v.Stats()));
 
@@ -238,10 +235,10 @@ namespace Garage1._0
             ui.Print("Here You can filter Vehicules by " +
                 "\n1.  Color " +
                 "\n2.  Brand " +
-                "\n3.  Number of engines ");
+                "\n3.  Number of wheels ");
 
            
-           // var checkType = ui.GetInput().ToLower();
+           
 
             var nav = ui.GetInput();
             switch (nav)
@@ -250,8 +247,8 @@ namespace Garage1._0
 
                 case "1":
                     ui.Print("What color ?");
-                    var checkcolor = ui.GetInput().ToLower();
-                  handler.garage.Where(v=>v.Color.ToLower()==checkcolor).
+                    var checkcolor = ui.GetInput();
+                  handler.garage.Where(v=>v.Color.EqualsInsensitive(checkcolor)).
                   ToList().ForEach(v => ui.Print(v.Stats()));
                     break;
                 case "2":
@@ -259,14 +256,12 @@ namespace Garage1._0
                     var checknumberwheels = Extensions.AskForInt("How many wheels ?", ui);
                     handler.garage.Where(v => v.NumberOfWheels == checknumberwheels).
                     ToList().ForEach(v => ui.Print(v.Stats()));
-                    //   var checkbyNumberOfwheels = Extensions.AskForInt("How many wheels ? : ",ui);
-                    //handler.garage.Select(p => p.NumberOfWheels ==checkbyNumberOfwheels )
-                    //   .ToList().ForEach(p => Console.WriteLine());
+                   
                     break;
                 case "3":
                     ui.Print("What brand ?");
-                    var brand = ui.GetInput().ToLower();
-                    handler.garage.Where(v => v.Brand == brand).
+                    var brand = ui.GetInput();
+                    handler.garage.Where(v => v.Brand.EqualsInsensitive(brand)).
                     ToList().ForEach(v=> ui.Print(v.Stats()));
 
                     break;
@@ -281,57 +276,7 @@ namespace Garage1._0
 
 
 
-            //handler.garage.Where(p=> p.GetType().Name.ToLower() == checkType)
-            //    .ToList().ForEach(p=> Console.WriteLine(p.Stats()));
-
-           
-            //filtrera via fueltype
-            //handler.garage.OrderBy(p => p.NumberOfWheels).ToList().ForEach(p => Console.WriteLine(p.Stats()));
-
-
-            //foreach (Vehicule v in res)
-            //{
-            //    ui.Print(v.Stats());
-            //}
-
-
-            //ForEach(e => Console.WriteLine(e.ToString()));
-
-
-
-
-            //foreach (var item in results)
-            //{
-            //    ui.Print(item.ToString());
-            //}
-
-
-
-            //var query = from item in handler.garage
-            //            group item by item.GetType() into y
-            //            select new { key = y.Key,grouping = y };
-
-
-            //foreach (var g in query)
-            //{
-            //    //this is each grouping
-            //    foreach (var item in query)
-            //    {
-            //        //this is each item in each group
-            //        ui.Print(item.ToString());
-            //    }
-            //}
-
-
-            //handler.garage.GroupBy(p=> p.Color).ToList().ForEach(p => Console.WriteLine(p.ToString()));
-
-
-
-
-            ////foreach (Vehicule item in handler.garage)
-            ////{
-            ////    ui.Print(item.Stats());
-            ////}
+          
 
 
         }

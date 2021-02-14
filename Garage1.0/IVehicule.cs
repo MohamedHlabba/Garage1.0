@@ -9,7 +9,7 @@ namespace Garage1._0
     //{ public void Add(Vehicule v);
     //    public void Delete(Vehicule v);
 
-        public void FindByRegistrationNymber(string reg);
+        public void FindByType(string reg);
         public void SearchFordon();
     }
 }

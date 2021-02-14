@@ -17,9 +17,9 @@ namespace Garage1._0
         ConsoleUI ui = new ConsoleUI();
         public Garage<Vehicule> garage = new Garage<Vehicule>();
 
-        static bool check;
+  
 
-        public void Add<T>(T item)
+        public void Addc<T>(T item)
         {
 
 
@@ -32,30 +32,32 @@ namespace Garage1._0
 
 
 
-        public void Adcd<T>(T item ,string name)
+        public void Add<T>(T item ,string name)
         {
 
-          // // string someString = name;
-            //string newString = string.Concat(
-            //    someString.ToLower().AsEnumerable().Select((c, i) => i % 2 == 0 ? c : char.ToUpper(c)));
+          
             //TODO
+          
+            bool has = garage.Any(ve=>ve.RegisterNummer.EqualsInsensitive(name));
 
-            bool has = garage.Any(cus => cus.RegisterNummer.ToLower().Equals(name) || cus.RegisterNummer.ToUpper().Equals(name));
-          //  bool has = garage.Any(cus => cus.RegisterNummer.Equals(name.AsEnumerable().SequenceEqual)) || cus.RegisterNummer.ToUpper().Equals(someString));
-            //bool has2 = garage.Any(cus => cus.RegisterNummer.CompareTo(name));
-
+           
 
             if (has)
                 {
 
-                    ui.Print("vehicule exists already with that number");
+                    ui.Print("vehicule exists already with that registernumber");
                      return;
                     
                 }
+            if (garage.IsFull ==true)
+            {
+                ui.Print(" Sorry, Garage is full ");
+                return;
+            }
                 
                 garage.Add(item as Vehicule);
 
-          
+            ui.Print($"You add a new  {item.GetType().Name} ");
 
         }
 
@@ -63,6 +65,8 @@ namespace Garage1._0
 
         public IEnumerable GetAll<T>()
         {
+            if (garage.CountVehicule() == 0)
+                ui.Print("GArage IS empty");
             return garage;
 
         }

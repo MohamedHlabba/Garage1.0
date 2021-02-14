@@ -55,13 +55,13 @@ namespace Garage1._0
 
         }
 
-        
-            public static int FindIndex<T>(this T[] array, T item)
-            {
-            
+
+        public static int FindIndex<T>(this T[] array, T item)
+        {
+
 
             return Array.FindIndex(array, val => val.Equals(item));
-            }
+        }
         public static void Hashcode(String value)
         {
             int result;
@@ -70,6 +70,13 @@ namespace Garage1._0
             result = value.GetHashCode();
             Console.WriteLine("String : {0} and HashCode: {1}", value, result);
         }
+
+
+        public static bool EqualsInsensitive(this string str, string value)
+        {
+            return string.Equals(str, value, StringComparison.CurrentCultureIgnoreCase);
+        }
+
 
 
         public static T[] RemoveAt<T>(this T[] arr, int index)
@@ -82,6 +89,19 @@ namespace Garage1._0
         //}
 
     }
+    public static class IEnumerableExt
+    {
+        public static T[] ToArrayOrNull<T>(this IEnumerable<T> seq)
+        {
+            var result = seq.ToArray();
+
+            if (result.Length == 0)
+                return null;
+
+            return result;
+        }
+    }
+
 }
 
 
