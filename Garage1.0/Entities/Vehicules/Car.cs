@@ -19,7 +19,7 @@ namespace Garage1._0
 
         public override string Stats()
         {
-            return base.Stats() + $"FuelType is {FuelType}";
+            return base.Stats() + $"FuelType : {FuelType}";
         }
 
 

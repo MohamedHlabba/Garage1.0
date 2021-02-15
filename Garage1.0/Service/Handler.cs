@@ -10,85 +10,20 @@ namespace Garage1._0
 
 
 
-    public class Handler : IHandlerGarage
+    public class Handler : IHandler
     {
 
         ConsoleUI ui = new ConsoleUI();
-     
+
 
         public Garage<Vehicule> garage;
 
 
-        public  void Initialize()
-        {
-            //TODO from Config
-
-            ui.Print("Welcome to the Garage\n(1, 2, 0) "
-                                        + "\n1.Sätta en kapacitet för att starta "
-                                        + "\n0. Exit the application");
-
-
-
-                    var capacity = Extensions.AskForInt("Enter Capacity",ui);
-                    garage = new Garage<Vehicule>(capacity);
-
-                    ui.Print("Populera garaget med ett antal fordon från start , Yes or No ?");
-
-            var nav = ui.GetInput();
-            string yes = "Yes";
-            string no = "No";
-            nav.EqualsInsensitive(yes);
-            nav.EqualsInsensitive(no);
-            switch (nav)
-            {
-                    
-                case "Yes":
-                    Populate();
-                    ui.Print("Yes you get some vehicules");
-                    Navigate();
-                    break;
-
-
-
-                case "NO":
-                    // var r = new Random();
-                    // garage =new Garage<Vehicule>(Capacity(r));
-                    Navigate();
-                    break;
-                case "0":
-                    Environment.Exit(0);
-                    break;
-                default:
-                    ui.Print("Please Enter a choice from the list up to start using the app");
-                    break;
-            }
 
 
 
 
-        }
 
-        private void Populate()
-        {
-            if (garage.IsFull == false)
-            {
-
-                for (int i = 0; i < garage.Capacity; i++)
-                {
-                    garage.Add(new Car("SE147", "Tesla", "Black", 4, "EL"));
-                    garage.Add(new MotorCycle("XN221", "Suzuki", "Black", 2, 250));
-                    garage.Add(new Boat("DR458", "Boston Whaler ", "White", 3, 8));
-                    garage.Add(new Airplane("CZF159", "Cessna", "White", 3, 4, 8));
-                    garage.Add(new Bus("FZE126", "Volvo", "Red", 6, 50, 11));
-
-                }
-            }
-            
-            
-
-        }
-
-      
 
 
 
@@ -100,7 +35,7 @@ namespace Garage1._0
             {
 
 
-              //  Initialize();
+
 
                 ui.Print("Welcome to the Garage\n(1, 2, 3, 4, 5, 0) "
                                         + "\n1. Lista samtliga parkerade fordon"
@@ -151,7 +86,7 @@ namespace Garage1._0
             } while (true);
         }
 
-      
+
 
         public void AddAndRemove()
         {
@@ -342,7 +277,7 @@ namespace Garage1._0
 
         }
 
-        private void GettAllVehicules()
+        public void GettAllVehicules()
         {
 
             if (garage.CountVehicule() == 0)
@@ -359,7 +294,7 @@ namespace Garage1._0
 
 
 
-        private void GetVehiculeByRegNumber()
+        public void GetVehiculeByRegNumber()
         {
             var regs = Extensions.AskForString("Enter the registernumber  ", ui);
             garage.Where(v => v.RegisterNummer.EqualsInsensitive(regs)).
@@ -371,7 +306,7 @@ namespace Garage1._0
 
 
 
-        private void RemoveVehicule()
+        public void RemoveVehicule()
         {
 
 
@@ -402,7 +337,7 @@ namespace Garage1._0
         }
 
 
-        private void ByType()
+        public void ByType()
         {
 
             var ofTypeCar = garage.OfType<Car>();
@@ -437,7 +372,7 @@ namespace Garage1._0
 
 
 
-        private void SearchByFilter()
+        public void SearchByFilter()
         {
 
             ui.Print("Here You can filter Vehicules by " +
@@ -485,22 +420,6 @@ namespace Garage1._0
 
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

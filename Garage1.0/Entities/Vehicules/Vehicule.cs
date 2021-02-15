@@ -35,12 +35,12 @@ namespace Garage1._0
         }
         public virtual string Stats()
         {
-            return $"Vehicule Description:" +
+            return $"Description:" +
                 $" Type:{GetType().Name} " +
-                $" RegistrationNumber :{RegisterNummer}" +
+                $" RegNbr :{RegisterNummer}" +
                 $" Brand :{Brand} " +
                 $" Color :{Color} " +
-                $" Number of wheels :{NumberOfWheels} ";
+                $" NbrOfwheels :{NumberOfWheels} ";
         }
 
         public override bool Equals(Object obj)

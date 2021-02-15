@@ -10,7 +10,7 @@ namespace Garage1._0
         
          //static   GarageManager manager = new GarageManager();
       static   ConsoleUI ui = new ConsoleUI();
-      static  Manager manager = new Manager();
+     // static  Manager manager = new Manager();
 
         static void Main(string[] args)
         {
@@ -23,6 +23,7 @@ namespace Garage1._0
                 // ShowMenu();
                 // UserAction();
                 // manager.Inialiaze();
+                Manager manager = new Manager();
                 manager.Start();
                
 
