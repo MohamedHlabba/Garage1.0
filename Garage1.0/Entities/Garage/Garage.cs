@@ -12,17 +12,14 @@ namespace Garage1._0
 
         private T[] vehicules;
         public int Capacity { get; set; }
-        //private int _size { get; set; }
-       // public int Count => vehicules.Length ;
+       
        
 
        ConsoleUI ui = new ConsoleUI();
 
 
         public bool IsFull => Capacity <= CountVehicule();
-       // public bool IsFull => Capacity < Count;
-
-        //public Vehicule this [int index] =>vehicules [index];
+       
 
 
         public Garage(int capacity)
@@ -32,18 +29,6 @@ namespace Garage1._0
             vehicules = new T[Capacity];
 
         }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
         public IEnumerator<T> GetEnumerator()
@@ -94,35 +79,7 @@ namespace Garage1._0
             
 
         }
-        //public bool Add2(T item ,string reg)
-
-
-        //{
-
-
-
-
-        //    for (int i = 0; i < vehicules.Length; i++)
-        //    {
-
-        //        if (IsFull)
-        //        {
-        //            return IsFull;
-        //        }
-
-
-        //        if (vehicules[i] == null)
-        //        {
-        //            vehicules[i] = item;
-        //            return true;
-        //        }
-        //    }
-
-        //    return false;
-
-
-        //}
-
+       
 
 
 
@@ -143,26 +100,8 @@ namespace Garage1._0
             return count;
         }
 
-        //public int CountRemove()
-        //{
-        //    int countarray= 0;
-        //    for (int i = 0; i < vehicules.Length; i++)
-        //    {
-        //        if (vehicules[i] != null)
-        //        {
-        //            countarray++;
+     
 
-        //        }
-
-
-        //    }
-
-
-        //    return countarray;
-        //}
-
-
-        //TODO(Add test when array is empty, try vehicules .count)
 
         public T Remove(int i)
         {

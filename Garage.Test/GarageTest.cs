@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Garage.Test
@@ -33,18 +34,23 @@ namespace Garage.Test
             
         }
 
+
+
+
         [TestMethod]
         public void Add_WithZeroCapacity_0()
         {
 
             //Arrange
             const int expected = 0;
-            // var Array = new Garage<Vehicule>(expected);
+
 
             //Act
-            var tryToAdd = Array.Add(new Vehicule("Grf45","Mercedes","Black",2));
+            Vehicule v1 = new Vehicule("Grf45", "Mercedes", "Black", 2);
+            var tryToAdd = Array.Add(v1);
             var Count = Array.CountVehicule();
             var actual = Array.Capacity;
+            
 
             //Assert
 
@@ -54,11 +60,50 @@ namespace Garage.Test
             Assert.AreEqual(actual,expected);
         }
 
+
+        [TestMethod]
+        public void Remove_WithZeroIndex_5()
+        {
+
+            Vehicule v1 = new Vehicule("Grf45", "Mercedes", "Black", 2);
+            var tryToAdd = Array.Add(v1);
+
+            const int expected2= 0;
+            int index = Extensions.FindIndex(Array.ToArray(), v1);
+
+            var trytodelete  = Array.Remove(index);
+            Assert.IsNotNull(trytodelete);
+            Assert.AreEqual(index,expected2);
+
+        }
+        [TestMethod]
+        public void  GetEnumerator()
+        {
+            //var expected = T[] { 1, 2, 3, 4, };
+            //var actual = c.Numbers().ToArray();
+            Vehicule v1 = new Vehicule("Grf45", "Mercedes", "Black", 2);
+            Vehicule v2 = new Vehicule("Grf5", "Toyota", "Red", 2);
+            Vehicule v3 = new Vehicule("IJK45", "Volvo", "Blue", 2);
+            Array.Add(v1);
+            Array.Add(v2);
+            Array.Add(v3);
+
+            CollectionAssert.AreEqual(new[] { v1, v2, v3 }, Array.Take(4).ToList());
+           
+
+
+
+        }
+
+
+
+
+
         [TestCleanup]
         public void CleanUP()
         {
 
-
+            
         }
 
         [ClassCleanup]
