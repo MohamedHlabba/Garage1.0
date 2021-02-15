@@ -15,6 +15,29 @@ namespace Garage1._0
 
 
 
+        public void start()
+        {
+            ui.Print("Welcome to the Garage\n(1, 2, 3 ,4, 0) "
+                 + "\n1. Add Vehicule"
+                 + "\n2. Add Airplaine"
+                
+                 + "\n0. Exit the application");
+            string nav = ui.GetInput();
+            switch (nav)
+            {
+
+                case "1":
+                   // handler.Addtest(T item);
+                   
+                    break;
+                case "2":
+                    AddAirplane();
+                    break;
+
+
+            }
+
+        }
 
 
 
@@ -81,6 +104,8 @@ namespace Garage1._0
             }
         }
 
+      
+
         private void AddBoat()
         {
             string brand4 = Extensions.AskForString("Brand", ui);
@@ -125,7 +150,7 @@ namespace Garage1._0
             string regst1 = Extensions.AskForString("Registernummer", ui);
             string color1 = Extensions.AskForString("Color", ui);
             int wheels1   = Extensions.AskForInt("Wheels", ui);
-         int numberofseat = Extensions.AskForInt("Number Of seat", ui);
+           int numberofseat = Extensions.AskForInt("Number Of seat", ui);
             int length    = Extensions.AskForInt("Length", ui);
             var airplane = new Airplane(regst1, brand1, color1, wheels1, numberofseat, length);
            handler.Add(airplane,regst1);
@@ -217,47 +242,7 @@ namespace Garage1._0
 
             
 
-
-           
-            // var cartype = handler.garage
-            //.Where(item =>item.GetType().Name=="Car")
-            //.Select(item => item.Stats());
-            // .GroupBy(u => u.GetType())
-
-
-            //  handler.garage.Where(v => v.RegisterNummer.EqualsInsensitive(regs)).
-            //ToList().
-            // ForEach(v => ui.Print(v.Stats()));
-
-
-
-
-            //var results = from Vehicule in handler.garage
-            //              group Vehicule by Vehicule.GetType().Name into g
-            //              select new { handler.garage };
-
-            //foreach (var item in groupedCustomerList)
-            //{
-            //    ui.Print(item.;
-            //}
-
-
-
-            // var checkReg = Extensions.AskForString("Register number", ui);
-            // var query = from Vehicule vehicule in handler.garage
-            //             where vehicule.RegisterNummer==checkReg
-            //             select vehicule;
-            //// handler.Remove(query);
-
-            // //foreach ( s in query)
-            // //    Console.WriteLine(s.LastName + ": " + s.Scores[0]);
-            // ui.Print("Enter vehicule's registernummer to remove it from the list");
-
-
-            // var resultat = handler.garage.ToList().Where( val=> val.RegisterNummer.ToLower()!=checkReg).ToArray();
-            // // resultat.ToList().IndexOf(handler.garage.Where(val => val.RegisterNummer.ToLower() != checkReg));
-            //// int x = Extensions.FindIndex(handler.garage, handler.garage.ToList().Where(val => val.RegisterNummer.ToLower() != checkReg).ToArray());
-            // 
+ 
 
 
 

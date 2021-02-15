@@ -25,9 +25,10 @@ namespace Garage1._0
         //public Vehicule this [int index] =>vehicules [index];
 
 
-        public Garage()
+        public Garage(int capacity)
         {
-            Capacity=1;
+
+            Capacity = capacity;
             vehicules = new T[Capacity];
 
         }
@@ -93,8 +94,38 @@ namespace Garage1._0
             
 
         }
+        //public bool Add2(T item ,string reg)
 
- 
+
+        //{
+
+
+
+
+        //    for (int i = 0; i < vehicules.Length; i++)
+        //    {
+
+        //        if (IsFull)
+        //        {
+        //            return IsFull;
+        //        }
+
+
+        //        if (vehicules[i] == null)
+        //        {
+        //            vehicules[i] = item;
+        //            return true;
+        //        }
+        //    }
+
+        //    return false;
+
+
+        //}
+
+
+
+
 
 
         public int CountVehicule()
@@ -112,23 +143,23 @@ namespace Garage1._0
             return count;
         }
 
-        public int CountRemove()
-        {
-            int countarray= 0;
-            for (int i = 0; i < vehicules.Length; i++)
-            {
-                if (vehicules[i] != null)
-                {
-                    countarray++;
+        //public int CountRemove()
+        //{
+        //    int countarray= 0;
+        //    for (int i = 0; i < vehicules.Length; i++)
+        //    {
+        //        if (vehicules[i] != null)
+        //        {
+        //            countarray++;
 
-                }
-
-
-            }
+        //        }
 
 
-            return countarray;
-        }
+        //    }
+
+
+        //    return countarray;
+        //}
 
 
         //TODO(Add test when array is empty, try vehicules .count)
