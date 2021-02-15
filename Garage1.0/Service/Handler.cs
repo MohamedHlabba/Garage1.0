@@ -18,24 +18,10 @@ namespace Garage1._0
 
         public Garage<Vehicule> garage;
 
-
-
-
-
-
-
-
-
-
         public void Navigate()
         {
-
-
             do
             {
-
-
-
 
                 ui.Print("Welcome to the Garage\n(1, 2, 3, 4, 5, 0) "
                                         + "\n1. Lista samtliga parkerade fordon"
@@ -48,9 +34,6 @@ namespace Garage1._0
                 string nav = ui.GetInput();
                 switch (nav)
                 {
-
-
-
                     case "1":
 
                         GettAllVehicules();
@@ -304,8 +287,6 @@ namespace Garage1._0
         }
 
 
-
-
         public void RemoveVehicule()
         {
 
@@ -368,10 +349,6 @@ namespace Garage1._0
         }
 
 
-
-
-
-
         public void SearchByFilter()
         {
 
@@ -379,9 +356,6 @@ namespace Garage1._0
                 "\n1.  Color " +
                 "\n2.  Number of wheels " +
                 "\n3.  Brand ");
-
-
-
 
             var nav = ui.GetInput();
             switch (nav)

@@ -7,9 +7,9 @@ using System.Text;
 
 namespace Garage.Test
 {
-  
+
     [TestClass]
-    public  class GarageTest
+    public class GarageTest
     {
 
 
@@ -30,8 +30,8 @@ namespace Garage.Test
             if (TestContext.TestName.EndsWith('0'))
                 Array = new Garage<Vehicule>(0);
             else
-                Array = new Garage<Vehicule>(6);
-            
+                Array = new Garage<Vehicule>(3);
+
         }
 
 
@@ -50,14 +50,35 @@ namespace Garage.Test
             var tryToAdd = Array.Add(v1);
             var Count = Array.CountVehicule();
             var actual = Array.Capacity;
-            
+
 
             //Assert
 
 
             Assert.IsFalse(tryToAdd);
             Assert.AreEqual(Count, expected);
-            Assert.AreEqual(actual,expected);
+            Assert.AreEqual(actual, expected);
+        }
+
+        [TestMethod]
+        public void CheckArrayIsFull()
+        {
+
+
+
+            Vehicule v1 = new Vehicule("Grf45", "Mercedes", "Black", 2);
+            Vehicule v2 = new Vehicule("Grf5", "Toyota", "Red", 2);
+            Vehicule v3 = new Vehicule("IJK45", "Volvo", "Blue", 2);
+            Vehicule v4 = new Vehicule("IJgg45", "BMW", "Black", 2);
+            Array.Add(v1);
+            Array.Add(v2);
+            Array.Add(v3);
+            Array.Add(v4);
+            var expected = Array.IsFull;
+
+
+
+            Assert.IsTrue(expected);
         }
 
 
@@ -68,28 +89,34 @@ namespace Garage.Test
             Vehicule v1 = new Vehicule("Grf45", "Mercedes", "Black", 2);
             var tryToAdd = Array.Add(v1);
 
-            const int expected2= 0;
+            const int expected2 = 0;
             int index = Extensions.FindIndex(Array.ToArray(), v1);
 
-            var trytodelete  = Array.Remove(index);
+            var trytodelete = Array.Remove(index);
             Assert.IsNotNull(trytodelete);
-            Assert.AreEqual(index,expected2);
+            Assert.AreEqual(index, expected2);
 
         }
         [TestMethod]
-        public void  GetEnumerator()
+        public void GetEnumerator()
         {
-            //var expected = T[] { 1, 2, 3, 4, };
-            //var actual = c.Numbers().ToArray();
+            
             Vehicule v1 = new Vehicule("Grf45", "Mercedes", "Black", 2);
             Vehicule v2 = new Vehicule("Grf5", "Toyota", "Red", 2);
             Vehicule v3 = new Vehicule("IJK45", "Volvo", "Blue", 2);
-            Array.Add(v1);
-            Array.Add(v2);
-            Array.Add(v3);
+            Vehicule v4 = new Vehicule("IJgg45", "BMW", "Black", 2);
+            //Array.Add(v1);
+            //Array.Add(v2);
+            //Array.Add(v3);
+         
+            //Array.Add(v4);
+         
+            Assert.IsTrue(Array.GetEnumerator().MoveNext());
 
-            CollectionAssert.AreEqual(new[] { v1, v2, v3 }, Array.Take(4).ToList());
-           
+            // Assert.AreEqual(v4, Array.GetEnumerator().MoveNext());
+
+            CollectionAssert.AreEqual( new[] { v2, v1, v3,v4},Array.ToArray() );
+
 
 
 
@@ -103,7 +130,7 @@ namespace Garage.Test
         public void CleanUP()
         {
 
-            
+
         }
 
         [ClassCleanup]

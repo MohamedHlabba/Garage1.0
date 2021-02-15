@@ -11,15 +11,20 @@ namespace Garage1._0
 
 
         private T[] vehicules;
-        public int Capacity { get; set; }
-       
-       
 
-       ConsoleUI ui = new ConsoleUI();
+
+
+        //Jag skapar property för att få tillgång på Arrayen från jSonFile
+        public T[]Vehicules { get; set; }
+        public int Capacity { get; set; }
+
+
+
+        ConsoleUI ui = new ConsoleUI();
 
 
         public bool IsFull => Capacity <= CountVehicule();
-       
+
 
 
         public Garage(int capacity)
@@ -50,36 +55,27 @@ namespace Garage1._0
 
 
 
-
         public bool Add(T item)
-
-
         {
-
-
-           
-            
-                for (int i = 0; i < vehicules.Length; i++)
-                {
-
+            for (int i = 0; i < vehicules.Length; i++)
+            {
                 if (IsFull)
                 {
                     return IsFull;
                 }
-                
-                
+
+
                 if (vehicules[i] == null)
-                    {
-                        vehicules[i] = item;
-                        return true;
-                    }
+                {
+                    vehicules[i] = item;
+                    return true;
                 }
+            }
 
-                return false;
-            
-
+            return false;
         }
-       
+
+
 
 
 
@@ -90,7 +86,7 @@ namespace Garage1._0
             int count = 0;
             for (int i = 0; i < vehicules.Length; i++)
             {
-                if (vehicules[i]!=null)
+                if (vehicules[i] != null)
                 {
                     count++;
 
@@ -100,44 +96,39 @@ namespace Garage1._0
             return count;
         }
 
-     
 
 
         public T Remove(int i)
         {
 
+            var tmp = new T[vehicules.Length];
 
-           
+            for (var j = 0; j < i; ++j)
+            {
+                tmp[j] = vehicules[j];
+            }
+
+            var result = vehicules[i];
+
+            for (var j = i + 1; j < vehicules.Length - 1; ++j)
+            {
+                tmp[j] = vehicules[j];
+            }
 
 
-                var tmp = new T[vehicules.Length];
+            vehicules = null;
 
-                for (var j = 0; j < i; ++j)
-                {
-                    tmp[j] = vehicules[j];
-                }
+            vehicules = tmp;
+            return result;
 
-                var result = vehicules[i];
-
-                for (var j = i + 1; j < vehicules.Length - 1; ++j)
-                {
-                    tmp[j] = vehicules[j];
-                }
-
-                
-                vehicules = null;
-
-                vehicules = tmp;
-                return result;
-            
         }
 
-        
+
 
     }
 }
 
-   
+
 
 
 
