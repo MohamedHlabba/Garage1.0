@@ -80,7 +80,9 @@ namespace Garage1._0
             ui.Print("Welcome to the Garage\n(1, 2, 0) "
                                         + "\n1.Sätta en kapacitet för att starta "
                                         + "\n0.Exit the application");
-            ui.GetInput();
+             ui.GetInput();
+           
+            
         }
 
         public void Populate()
@@ -99,7 +101,7 @@ namespace Garage1._0
                handler.garage.Add(c1);
                 handler.garage.Add(c2);
                 handler.garage.Add(mt1);
-                handler.garage.Add(mt2);
+                //handler.garage.Add(mt2);
                 handler.garage.Add(b1);
                 //handler.garage.Add(air2);
                 //handler.garage.Add(air1);
@@ -113,6 +115,8 @@ namespace Garage1._0
 
             strResultJson = String.Empty;
             strResultJson = File.ReadAllText(@"garage.json");
+
+            //jag kunde inte parsa Garage klassen jag fick error .
             var des = (Vehicule)Newtonsoft.Json.JsonConvert.DeserializeObject(strResultJson, typeof(Vehicule));
             var resultGarage = des.ToString();
             //var des2 = JsonConvert.DeserializeObject(strResultJson, typeof(Garage<Vehicule>));

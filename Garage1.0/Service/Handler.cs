@@ -26,9 +26,10 @@ namespace Garage1._0
                 ui.Print("Welcome to the Garage\n(1, 2, 3, 4, 5, 0) "
                                         + "\n1. Lista samtliga parkerade fordon"
                                         + "\n2. Lista fordonstyper och hur många av varje som står i garaget"
-                                        + "\n3. Lägga till och ta bort fordon ur garaget"
-                                        + "\n4. Hitta ett specifikt fordon via registreringsnumret."
-                                        + "\n5. Söka efter fordon utifrån en  egenskap eller flera  "
+                                        + "\n3. Lägga till fordon "
+                                        + "\n4. Ta bort fordon ur garaget"
+                                        + "\n5. Hitta ett specifikt fordon via registreringsnumret "
+                                        + "\n6. Söka efter fordon utifrån en  egenskap eller flera  "
                                         + "\n0. Exit the application");
 
                 string nav = ui.GetInput();
@@ -47,14 +48,17 @@ namespace Garage1._0
                         break;
 
                     case "4":
-                        GetVehiculeByRegNumber();
+                        RemoveVehicule();
 
                         break;
 
                     case "5":
+                        GetVehiculeByRegNumber();
+                        break;
+                    case "6":
                         SearchByFilter();
                         break;
-
+                         
 
                     case "0":
                         Environment.Exit(0);
@@ -87,7 +91,7 @@ namespace Garage1._0
                     + "\n3. Add Bus"
                     + "\n4. Add Airplane"
                     + "\n5. Add Boat"
-                     + "\n6. Remove Vehicule");
+                    + "\n6. Remove Vehicule");
 
             string nav = ui.GetInput();
             switch (nav)
@@ -120,7 +124,7 @@ namespace Garage1._0
 
                     break;
                 case "6":
-                    RemoveVehicule();
+                  RemoveVehicule();
 
                     break;
 
