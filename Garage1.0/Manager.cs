@@ -14,7 +14,7 @@ namespace Garage1._0
 
         public Handler handler = new Handler();
         public static ConsoleUI ui = new ConsoleUI();
-       // public Garage<Vehicule> garage= new Garage<Vehicule>(20);
+    
 
 
 
@@ -38,6 +38,11 @@ namespace Garage1._0
 
         private void UserAction()
         {
+            do
+            {
+
+            
+            
             var capacity = Extensions.AskForInt("Sätta en kapacitet ", ui);
 
             handler.garage = new Garage<Vehicule>(capacity);
@@ -65,6 +70,7 @@ namespace Garage1._0
                     ui.Print("Please Enter a choice from the list up to start using the app");
                     break;
             }
+            } while (true);
 
         }
 

@@ -19,7 +19,7 @@ namespace Garage1._0
         private T[] vehicules;
 
        
-        public T[] Vehicules { get; set; }
+       
 
        
      
@@ -38,7 +38,7 @@ namespace Garage1._0
         {
 
             Capacity = capacity;
-            Vehicules=   this.vehicules = new T[Capacity];
+            vehicules = new T[Capacity];
 
         }
 
@@ -48,7 +48,7 @@ namespace Garage1._0
             //    "Vehicules :{2}", Capacity, IsFull, Vehicules, string.Join(',', Vehicules[Capacity]));
 
             return string.Format("Garage Detail :\n\tCapcity: {0}, IsFull : {1} , " +
-    "Vehicules :{2}", Capacity, IsFull, Vehicules, string.Join(',',Vehicules.GetEnumerator()));
+    "Vehicules :{2}", Capacity, IsFull, vehicules, string.Join(',',vehicules.GetEnumerator()));
 
         }
         //,vehicules, string.Join(",",Vehicules.ToList())
