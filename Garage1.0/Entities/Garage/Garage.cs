@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,16 +7,22 @@ using System.Text;
 
 namespace Garage1._0
 {
+
+    
+
+    [Serializable]
+    
     public class Garage<T> : IEnumerable<T> where T : Vehicule
     {
 
 
         private T[] vehicules;
 
+       
+        public T[] Vehicules { get; set; }
 
-
-        //Jag skapar property för att få tillgång på Arrayen från jSonFile
-        public T[]Vehicules { get; set; }
+       
+     
         public int Capacity { get; set; }
 
 
@@ -31,11 +38,20 @@ namespace Garage1._0
         {
 
             Capacity = capacity;
-            vehicules = new T[Capacity];
+            Vehicules=   this.vehicules = new T[Capacity];
 
         }
 
+        public override string ToString()
+        {
+            //return string.Format("Garage Detail :\n\tCapcity: {0}, IsFull : {1} , " +
+            //    "Vehicules :{2}", Capacity, IsFull, Vehicules, string.Join(',', Vehicules[Capacity]));
 
+            return string.Format("Garage Detail :\n\tCapcity: {0}, IsFull : {1} , " +
+    "Vehicules :{2}", Capacity, IsFull, Vehicules, string.Join(',',Vehicules.GetEnumerator()));
+
+        }
+        //,vehicules, string.Join(",",Vehicules.ToList())
         public IEnumerator<T> GetEnumerator()
         {
 

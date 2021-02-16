@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -13,6 +14,7 @@ namespace Garage1._0
 
         public Handler handler = new Handler();
         public static ConsoleUI ui = new ConsoleUI();
+       // public Garage<Vehicule> garage= new Garage<Vehicule>(20);
 
 
 
@@ -88,20 +90,38 @@ namespace Garage1._0
             if (handler.garage.IsFull == false)
             {
 
-                handler.garage.Add(c1);
+               handler.garage.Add(c1);
                 handler.garage.Add(c2);
                 handler.garage.Add(mt1);
                 handler.garage.Add(mt2);
                 handler.garage.Add(b1);
-                handler.garage.Add(air2);
-                handler.garage.Add(air1);
-                handler.garage.Add(bus1);
+                //handler.garage.Add(air2);
+                //handler.garage.Add(air1);
+                //handler.garage.Add(bus1);
             }
 
-            string strResultJson= JsonConvert.SerializeObject(handler.garage);
+            string strResultJson = JsonConvert.SerializeObject(handler.garage.GetEnumerator());
             Console.WriteLine(strResultJson);
-            File.WriteAllText(@"Garage.json",strResultJson);
+            File.WriteAllText(@"Garage.json", strResultJson);
             ui.Print("Stored");
+
+            strResultJson = String.Empty;
+            strResultJson = File.ReadAllText(@"garage.json");
+            var des = (Vehicule)Newtonsoft.Json.JsonConvert.DeserializeObject(strResultJson, typeof(Vehicule));
+            var resultGarage = des.ToString();
+            //var des2 = JsonConvert.DeserializeObject(strResultJson, typeof(Garage<Vehicule>));
+            //var resultGarage2 = des2.ToString();
+           
+            var dictionary = JsonConvert.DeserializeObject<IDictionary>(strResultJson);
+
+            foreach (DictionaryEntry entry in dictionary)
+            {
+                ui.Print(entry.Key + ":" + entry.Value);
+            }
+
+
+
+
         }
 
     }
